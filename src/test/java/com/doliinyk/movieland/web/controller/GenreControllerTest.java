@@ -36,7 +36,7 @@ public class GenreControllerTest {
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void GetAll() throws Exception {
         List<Genre> genres = new ArrayList<>();
 
         genres.add(new Genre(1, "драма"));

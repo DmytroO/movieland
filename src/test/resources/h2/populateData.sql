@@ -13,3 +13,8 @@ insert into movieland_movie (id,name_russian,name_native,year_of_release,countri
 insert into movieland_poster (id ,movie_id ,poster_url) values (1 ,1,'picture1.jpg');
 insert into movieland_poster (id ,movie_id ,poster_url) values (2 ,2,'picture2.jpeg');
 insert into movieland_poster (id ,movie_id ,poster_url) values (3 ,3,'picture3.png');
+
+insert into movieland_genre (id ,name) values (1 ,'драма');
+insert into movieland_genre (id ,name) values (2 ,'триллер');
+insert into movieland_genre (id ,name) values (3 ,'фэнтези');
+
