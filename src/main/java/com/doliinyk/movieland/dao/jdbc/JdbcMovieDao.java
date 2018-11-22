@@ -3,7 +3,6 @@ package com.doliinyk.movieland.dao.jdbc;
 import com.doliinyk.movieland.dao.MovieDao;
 import com.doliinyk.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.doliinyk.movieland.entity.Movie;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

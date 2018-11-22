@@ -31,9 +31,7 @@ public class MovieControllerTest {
     MovieService movieServiceMock;
 
     @Before
-    public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(movieController).build();
-    }
+    public void setUp() { mockMvc = MockMvcBuilders.standaloneSetup(movieController).build(); }
 
     @Test
     public void testGetAll() throws Exception {

@@ -1,0 +1,49 @@
+23:25:29.779 [main] DEBUG c.d.m.w.c.GenreControllerTest - setUp
+23:26:59.936 [main] DEBUG c.d.m.w.c.GenreControllerTest - setUp
+23:30:03.930 [main] DEBUG c.d.m.w.c.GenreControllerTest - setUp after enter
+23:30:59.265 [main] DEBUG c.d.m.w.c.GenreControllerTest - setUp after enter
+23:37:09.941 [main] DEBUG c.d.m.w.c.GenreControllerTest - setUp after enter
+23:37:11.021 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 1 mappings in <unknown>
+23:37:11.418 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1, ResponseBodyAdvice
+23:37:11.478 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+23:37:11.520 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:37:11.521 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:37:11.525 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+23:37:11.525 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected FixedThemeResolver
+23:37:11.526 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1e4d3ce5
+23:37:11.526 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3ddc6915
+23:37:11.526 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+23:37:11.527 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 5 ms
+23:37:11.527 [main] DEBUG c.d.m.w.c.GenreControllerTest - setup before return
+23:37:11.527 [main] DEBUG c.d.m.w.c.GenreControllerTest - testGetAll
+23:37:11.589 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - GET "/v1/genre", parameters={}
+23:37:11.652 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.doliinyk.movieland.entity.Genre> com.doliinyk.movieland.web.controller.GenreController.getAll()
+23:37:11.746 [main] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;charset=UTF-8', given [*/*] and supported [application/json;charset=UTF-8]
+23:37:11.777 [main] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Genre{id=1, name='драма'}, Genre{id=2, name='триллер'}]]
+23:37:11.980 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Completed 200 OK
+23:37:12.221 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $
+23:37:12.255 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[0]['id']
+23:37:12.257 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[0]['name']
+23:37:12.258 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[1]['id']
+23:37:12.259 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[1]['name']
+23:38:25.882 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 1 mappings in <unknown>
+23:38:26.324 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1, ResponseBodyAdvice
+23:38:26.384 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+23:38:26.415 [main] INFO  o.s.mock.web.MockServletContext - Initializing Spring TestDispatcherServlet ''
+23:38:26.415 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+23:38:26.431 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected AcceptHeaderLocaleResolver
+23:38:26.431 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected FixedThemeResolver
+23:38:26.431 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@389c4eb1
+23:38:26.431 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3fc79729
+23:38:26.431 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+23:38:26.431 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 16 ms
+23:38:26.510 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - GET "/v1/genre", parameters={}
+23:38:26.527 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.doliinyk.movieland.entity.Genre> com.doliinyk.movieland.web.controller.GenreController.getAll()
+23:38:26.558 [main] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;charset=UTF-8', given [*/*] and supported [application/json;charset=UTF-8]
+23:38:26.574 [main] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Genre{id=1, name='драма'}, Genre{id=2, name='триллер'}]]
+23:38:26.711 [main] DEBUG o.s.t.w.s.TestDispatcherServlet - Completed 200 OK
+23:38:26.945 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $
+23:38:26.976 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[0]['id']
+23:38:26.976 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[0]['name']
+23:38:26.976 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[1]['id']
+23:38:26.976 [main] DEBUG c.j.j.internal.path.CompiledPath - Evaluating path: $[1]['name']
