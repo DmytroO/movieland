@@ -26,4 +26,12 @@ public class DefaultMovieService implements MovieService {
         logger.info("movies.size {}", movies.size());
         return movies;
     }
+
+    @Override
+    public List<Movie> getThreeRandom() {
+        List<Movie> movies = movieDao.getThreeRandom();
+        logger.trace("movies {}" ,movies);
+        logger.info("movies.size {}" ,movies.size());
+        return movies;
+    }
 }

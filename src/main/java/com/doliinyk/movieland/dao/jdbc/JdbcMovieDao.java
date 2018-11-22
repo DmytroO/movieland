@@ -18,7 +18,16 @@ public class JdbcMovieDao implements MovieDao {
             " from       movieland_movie  m " +
             " inner join movieland_poster p on p.movie_id = m.id" +
             " order by m.id";
-
+    private static final String GET_3_RANDOM_MOVIES = "select id ,nameRussian ,nameNative ,yearOfRelease ,rating ,price ,picturePath\n" +
+            "from      (\n" +
+            "select m.id ,m.name_russian as nameRussian ,m.name_native as nameNative\n" +
+            ",m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath\n" +
+            "from       movieland_movie  m\n" +
+            "inner join movieland_poster p on p.movie_id = m.id\n" +
+            "limit 10\n" +
+            "          ) a\n" +
+            "order by random()\n" +
+            "limit 3";
     public JdbcMovieDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -27,4 +36,8 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> getAll() {
         return jdbcTemplate.query(GET_ALL_MOVIE, MOVIE_ROW_MAPPER);
     }
+
+    @Override
+    public List<Movie> getThreeRandom() { return jdbcTemplate.query(GET_3_RANDOM_MOVIES, MOVIE_ROW_MAPPER); }
+
 }
