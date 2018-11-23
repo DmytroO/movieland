@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +31,14 @@ public class DefaultMovieService implements MovieService {
         List<Movie> movies = movieDao.getThreeRandom();
         logger.trace("movies {}" ,movies);
         logger.info("movies.size {}" ,movies.size());
+        return movies;
+    }
+
+    @Override
+    public List<Movie> getMovie4Genre(int id) {
+        List<Movie> movies = movieDao.getMovie4Genre(id);
+        logger.trace("genre: {}, movies: {}", id, movies);
+        logger.info("genre: {}, movies.size: {}", id, movies.size());
         return movies;
     }
 }
