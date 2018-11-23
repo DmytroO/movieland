@@ -14,3 +14,8 @@ create table movieland_poster (
 ,movie_id                    int                not null
 ,poster_url                  varchar(1000)      not null
 );
+
+create table movieland_genre (
+ id                int identity primary key
+,name              varchar(100)                 not null
+);

@@ -31,12 +31,10 @@ public class MovieControllerTest {
     MovieService movieServiceMock;
 
     @Before
-    public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(movieController).build();
-    }
+    public void setUp() { mockMvc = MockMvcBuilders.standaloneSetup(movieController).build(); }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void getAll() throws Exception {
         List<Movie> movies = new ArrayList<>();
         Movie m = new Movie();
         m.setId(1);
@@ -62,7 +60,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void testGetThreeRandom() throws Exception {
+    public void getThreeRandom() throws Exception {
         List<Movie> movies = new ArrayList<>();
         Movie m1 = new Movie();
         m1.setId(1);
@@ -97,6 +95,65 @@ public class MovieControllerTest {
         when(movieServiceMock.getThreeRandom()).thenReturn(movies);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/movie/random"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].nameRussian", is("Фильм1")))
+                .andExpect(jsonPath("$[0].nameNative" ,is("Movie1")))
+                .andExpect(jsonPath("$[0].picturePath" ,is("movie1_picture_path.jpeg")))
+                .andExpect(jsonPath("$[0].rating" ,is(9.00)))
+                .andExpect(jsonPath("$[0].price" ,is(999.99)))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[1].nameRussian", is("Фильм2")))
+                .andExpect(jsonPath("$[1].nameNative" ,is("Movie2")))
+                .andExpect(jsonPath("$[1].picturePath" ,is("movie2_picture_path.jpg")))
+                .andExpect(jsonPath("$[1].rating" ,is(9.9)))
+                .andExpect(jsonPath("$[1].price" ,is(99.00)))
+                .andExpect(jsonPath("$[2].id", is(3)))
+                .andExpect(jsonPath("$[2].nameRussian", is("Фильм3")))
+                .andExpect(jsonPath("$[2].nameNative" ,is("Movie3")))
+                .andExpect(jsonPath("$[2].picturePath" ,is("movie3_picture_path.jpg")))
+                .andExpect(jsonPath("$[2].rating" ,is(7.9)))
+                .andExpect(jsonPath("$[2].price" ,is(0.01)));
+    }
+
+    @Test
+    public void getMovie4Genre() throws Exception {
+        List<Movie> movies = new ArrayList<>();
+        Movie m1 = new Movie();
+        m1.setId(1);
+        m1.setNameRussian("Фильм1");
+        m1.setNameNative("Movie1");
+        m1.setYearOfRelease(1999);
+        m1.setPicturePath("movie1_picture_path.jpeg");
+        m1.setRating(9.00);
+        m1.setPrice(999.99);
+        movies.add(m1);
+
+        Movie m2 = new Movie();
+        m2.setId(2);
+        m2.setNameRussian("Фильм2");
+        m2.setNameNative("Movie2");
+        m2.setYearOfRelease(1999);
+        m2.setPicturePath("movie2_picture_path.jpg");
+        m2.setRating(9.9);
+        m2.setPrice(99.00);
+        movies.add(m2);
+
+        Movie m3 = new Movie();
+        m3.setId(3);
+        m3.setNameRussian("Фильм3");
+        m3.setNameNative("Movie3");
+        m3.setYearOfRelease(2001);
+        m3.setPicturePath("movie3_picture_path.jpg");
+        m3.setRating(7.9);
+        m3.setPrice(0.01);
+        movies.add(m3);
+
+        when(movieServiceMock.getMovie4Genre(eq(1))).thenReturn(movies);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/movie/genre/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$", hasSize(3)))

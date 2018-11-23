@@ -4,6 +4,7 @@ import com.doliinyk.movieland.entity.Movie;
 import com.doliinyk.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,4 +30,6 @@ public class MovieController {
         return movieService.getThreeRandom();
     }
 
+    @RequestMapping(path = "/v1/movie/genre/{genreId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Movie> getMovie4Genre(@PathVariable("genreId") int id) { return movieService.getMovie4Genre(id); }
 }
