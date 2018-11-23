@@ -48,5 +48,5 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> getThreeRandom() { return jdbcTemplate.query(GET_3_RANDOM_MOVIES, MOVIE_ROW_MAPPER); }
 
     @Override
-    public List<Movie> getMovie4Genre(int id) { return jdbcTemplate.query(GET_MOVIE_4_GENRE ,MOVIE_ROW_MAPPER ,id); }
+    public List<Movie> getByGenre(int id) { return jdbcTemplate.query(GET_MOVIE_4_GENRE ,MOVIE_ROW_MAPPER ,id); }
 }

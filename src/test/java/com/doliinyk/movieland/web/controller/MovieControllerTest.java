@@ -119,7 +119,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void getMovie4Genre() throws Exception {
+    public void getByGenre() throws Exception {
         List<Movie> movies = new ArrayList<>();
         Movie m1 = new Movie();
         m1.setId(1);
@@ -151,7 +151,7 @@ public class MovieControllerTest {
         m3.setPrice(0.01);
         movies.add(m3);
 
-        when(movieServiceMock.getMovie4Genre(eq(1))).thenReturn(movies);
+        when(movieServiceMock.getByGenre(eq(1))).thenReturn(movies);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/movie/genre/1"))
                 .andExpect(status().isOk())

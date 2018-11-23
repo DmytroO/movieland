@@ -35,8 +35,8 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getMovie4Genre(int id) {
-        List<Movie> movies = movieDao.getMovie4Genre(id);
+    public List<Movie> getByGenre(int id) {
+        List<Movie> movies = movieDao.getByGenre(id);
         logger.trace("genre: {}, movies: {}", id, movies);
         logger.info("genre: {}, movies.size: {}", id, movies.size());
         return movies;

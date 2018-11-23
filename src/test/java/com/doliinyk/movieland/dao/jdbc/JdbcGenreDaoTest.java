@@ -24,13 +24,13 @@ public class JdbcGenreDaoTest {
         expectedGenres.add(new Genre(1, "драма"));
         expectedGenres.add(new Genre(2, "триллер"));
 
-        when(jdbcTemplate.query(any(String.class), any(GenreRowMapper.class))).thenReturn(expectedGenres);
+        when(jdbcTemplate.query(any(String.class), any(GenreRowMapper.class))).thenReturn(new ArrayList<>(expectedGenres));
 
         JdbcGenreDao jdbcGenreDao = new JdbcGenreDao(jdbcTemplate);
         List<Genre> actualGenres = jdbcGenreDao.getAll();
 
         assertEquals(2, actualGenres.size());
-        for (int i = expectedGenres.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedGenres.size(); i++) {
             assertTrue(actualGenres.remove(expectedGenres.get(i)));
         }
         assertEquals(0, actualGenres.size());

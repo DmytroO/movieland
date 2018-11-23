@@ -21,13 +21,13 @@ public class DefaultGenreServiceTest {
         expectedGenres.add(new Genre(1 ,"драма"));
         expectedGenres.add(new Genre(2 ,"триллер"));
 
-        when(genreDao.getAll()).thenReturn(expectedGenres);
+        when(genreDao.getAll()).thenReturn(new ArrayList<>(expectedGenres));
 
         DefaultGenreService defaultGenreService = new DefaultGenreService(genreDao);
         List<Genre> actualGenres = defaultGenreService.getAll();
 
         assertEquals(2, actualGenres.size());
-        for (int i = expectedGenres.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedGenres.size(); i++) {
             assertTrue(actualGenres.remove(expectedGenres.get(i)));
         }
         assertEquals(0 ,actualGenres.size());

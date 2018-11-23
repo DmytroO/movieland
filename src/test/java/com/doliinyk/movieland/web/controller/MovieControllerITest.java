@@ -37,7 +37,7 @@ public class MovieControllerITest {
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void getAll() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/movie"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -65,7 +65,7 @@ public class MovieControllerITest {
                 .andExpect(jsonPath("$[2].price", is(200.00)));
     }
     @Test
-    public void testGetThreeRandom() throws Exception {
+    public void getThreeRandom() throws Exception {
         mockMvc.perform(get("/v1/movie/random"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))

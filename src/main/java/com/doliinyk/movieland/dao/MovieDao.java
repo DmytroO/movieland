@@ -6,5 +6,5 @@ import java.util.List;
 public interface MovieDao {
     List<Movie> getAll();
     List<Movie> getThreeRandom();
-    List<Movie> getMovie4Genre(int id);
+    List<Movie> getByGenre(int id);
 }
