@@ -39,13 +39,13 @@ public class DefaultMovieServiceTest {
         m2.setPrice(99.00);
         expectedMovies.add(m2);
 
-        when(movieDao.getAll()).thenReturn(expectedMovies);
+        when(movieDao.getAll()).thenReturn(new ArrayList<>(expectedMovies));
 
         DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao);
         List<Movie> actualMovies = defaultMovieService.getAll();
 
         assertEquals(2 ,actualMovies.size());
-        for (int i = expectedMovies.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedMovies.size(); i++) {
             assertTrue(actualMovies.remove(expectedMovies.get(i)));
         }
         assertEquals(0 ,actualMovies.size());
@@ -86,20 +86,20 @@ public class DefaultMovieServiceTest {
         m3.setPrice(0.01);
         expectedMovies.add(m3);
 
-        when(movieDao.getThreeRandom()).thenReturn(expectedMovies);
+        when(movieDao.getThreeRandom()).thenReturn(new ArrayList<>(expectedMovies));
 
         DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao);
         List<Movie> actualMovies = defaultMovieService.getThreeRandom();
 
         assertEquals(3 ,actualMovies.size());
-        for (int i = expectedMovies.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedMovies.size(); i++) {
             assertTrue(actualMovies.remove(expectedMovies.get(i)));
         }
         assertEquals(0 ,actualMovies.size());
     }
 
     @Test
-    public void getMovie4Genre() {
+    public void getByGenre() {
         MovieDao movieDao = mock(MovieDao.class);
         List<Movie> expectedMovies = new ArrayList<>();
 
@@ -133,13 +133,13 @@ public class DefaultMovieServiceTest {
         m3.setPrice(0.01);
         expectedMovies.add(m3);
 
-        when(movieDao.getMovie4Genre(eq(1))).thenReturn(expectedMovies);
+        when(movieDao.getByGenre(eq(1))).thenReturn(new ArrayList<>(expectedMovies));
 
         DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao);
-        List<Movie> actualMovies = defaultMovieService.getMovie4Genre(1);
+        List<Movie> actualMovies = defaultMovieService.getByGenre(1);
 
         assertEquals(3 ,actualMovies.size());
-        for (int i = expectedMovies.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedMovies.size(); i++) {
             assertTrue(actualMovies.remove(expectedMovies.get(i)));
         }
         assertEquals(0 ,actualMovies.size());

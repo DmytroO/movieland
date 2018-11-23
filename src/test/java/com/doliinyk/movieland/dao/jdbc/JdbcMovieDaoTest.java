@@ -41,13 +41,13 @@ public class JdbcMovieDaoTest {
         m2.setPrice(99.00);
         expectedMovies.add(m2);
 
-        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(expectedMovies);
+        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(new ArrayList<>(expectedMovies));
 
         JdbcMovieDao jdbcMovieDao = new JdbcMovieDao(jdbcTemplate);
         List<Movie> actualMovies = jdbcMovieDao.getAll();
 
         assertEquals(2 ,actualMovies.size());
-        for (int i = expectedMovies.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedMovies.size(); i++) {
             assertTrue(actualMovies.remove(expectedMovies.get(i)));
         }
         assertEquals(0 ,actualMovies.size());
@@ -88,20 +88,20 @@ public class JdbcMovieDaoTest {
         m3.setPrice(0.01);
         expectedMovies.add(m3);
 
-        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(expectedMovies);
+        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(new ArrayList<>(expectedMovies));
 
         JdbcMovieDao jdbcMovieDao = new JdbcMovieDao(jdbcTemplate);
         List<Movie> actualMovies = jdbcMovieDao.getThreeRandom();
 
         assertEquals(3 ,actualMovies.size());
-        for (int i = expectedMovies.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedMovies.size(); i++) {
             assertTrue(actualMovies.remove(expectedMovies.get(i)));
         }
         assertEquals(0 ,actualMovies.size());
     }
 
     @Test
-    public void getMovie4Genre() {
+    public void getByGenre() {
         JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
         List<Movie> expectedMovies = new ArrayList<>();
 
@@ -135,13 +135,13 @@ public class JdbcMovieDaoTest {
         m3.setPrice(0.01);
         expectedMovies.add(m3);
 
-        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class), eq(1))).thenReturn(expectedMovies);
+        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class), eq(1))).thenReturn(new ArrayList<>(expectedMovies));
 
         JdbcMovieDao jdbcMovieDao = new JdbcMovieDao(jdbcTemplate);
-        List<Movie> actualMovies = jdbcMovieDao.getMovie4Genre(1);
+        List<Movie> actualMovies = jdbcMovieDao.getByGenre(1);
 
         assertEquals(3 ,actualMovies.size());
-        for (int i = expectedMovies.size() - 1; i >= 0; i--) {
+        for (int i = 0; i < expectedMovies.size(); i++) {
             assertTrue(actualMovies.remove(expectedMovies.get(i)));
         }
         assertEquals(0 ,actualMovies.size());
