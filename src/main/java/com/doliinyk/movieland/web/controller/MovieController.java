@@ -24,4 +24,9 @@ public class MovieController {
         return movieService.getAll();
     }
 
+    @RequestMapping(path = "/v1/movie/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Movie> getThreeRandom() {
+        return movieService.getThreeRandom();
+    }
+
 }

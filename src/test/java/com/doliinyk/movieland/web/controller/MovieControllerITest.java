@@ -1,11 +1,8 @@
 package com.doliinyk.movieland.web.controller;
 
-
-import com.doliinyk.movieland.service.MovieService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -65,5 +63,12 @@ public class MovieControllerITest {
                 .andExpect(jsonPath("$[2].picturePath", is("picture3.png")))
                 .andExpect(jsonPath("$[2].rating", is(9.9)))
                 .andExpect(jsonPath("$[2].price", is(200.00)));
+    }
+    @Test
+    public void testGetThreeRandom() throws Exception {
+        mockMvc.perform(get("/v1/movie/random"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$", hasSize(3)));
     }
 }
