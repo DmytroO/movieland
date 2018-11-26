@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +14,7 @@ import java.util.List;
 
 @Repository
 @Primary
+@SuppressWarnings("unused")
 public class CacheGenreDao implements GenreDao {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private GenreDao genreDao;
@@ -22,18 +22,18 @@ public class CacheGenreDao implements GenreDao {
 
     @PostConstruct
     @Scheduled (
-            initialDelayString="${cacheGenre.refresh.initialDelay}",
-            fixedDelayString="${cacheGenre.refresh.fixedDelay}"
+            initialDelayString="${cache.genre.refresh.initialDelay}",
+            fixedDelayString="${cache.genre.refresh.fixedDelay}"
     )
+    @SuppressWarnings("unused")
     private void refresh() {
         List<Genre> genres = genreDao.getAll();
         genreCache = genres;
-        log.trace("refreshed");
+        log.info("refreshed; genres.size: ", genres.size());
     }
 
     @Override
     public List<Genre> getAll() {
-        log.trace("getAll: genreCache.size {}" ,genreCache);
         return new ArrayList<>(genreCache);
     }
 

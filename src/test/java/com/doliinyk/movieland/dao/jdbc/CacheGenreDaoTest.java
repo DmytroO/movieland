@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = "classpath:testContext.xml")
 public class CacheGenreDaoTest {
     @Autowired
+    @SuppressWarnings("unused")
     private GenreDao cacheGenreDao;
 
     @Test
