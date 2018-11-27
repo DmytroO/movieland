@@ -11,7 +11,13 @@
     <bean id="yamlProperties" class="org.springframework.beans.factory.config.YamlPropertiesFactoryBean">
         <property name="resources" value="classpath:application.yml"/>
     </bean>
-    <context:property-placeholder properties-ref="yamlProperties" />
+    <context:property-placeholder properties-ref="yamlProperties"/>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:changeLog.xml"/>
+        <property name="shouldRun" value="true"/>
+    </bean>
 
     <context:component-scan base-package="com.doliinyk.movieland.dao"/>
     <context:component-scan base-package="com.doliinyk.movieland.service"/>
@@ -32,4 +38,5 @@
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
+
 </beans>
