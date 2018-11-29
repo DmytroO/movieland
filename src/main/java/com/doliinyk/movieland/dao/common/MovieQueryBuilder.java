@@ -11,11 +11,10 @@ public class MovieQueryBuilder {
     public static String orderByBuilder(MovieRequestParameter requestParameter) {
         int orderColumnNumber = requestParameter.orderParameterSize();
         if (orderColumnNumber == 0) return " ";
-        StringBuilder orderBy = new StringBuilder(" order by");
+        StringBuilder orderBy = new StringBuilder(" order by ");
         for(int i = 0; i < orderColumnNumber; i++) {
             if (i > 0) orderBy.append(",");
             MovieOrderParameter mop = requestParameter.getMovieOrderParameter(i);
-            orderBy.append(" ");
             orderBy.append(mop.getMovieOrderColumn().getMovieOrderColumn());
             orderBy.append(" ");
             orderBy.append(mop.getOrderType().getOrderTypeName());

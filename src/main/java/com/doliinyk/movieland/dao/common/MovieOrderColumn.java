@@ -1,20 +1,16 @@
 package com.doliinyk.movieland.dao.common;
 
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum MovieOrderColumn  {
     PRICE("price"),
     RATING("rating");
-
+    private static final Map<String, MovieOrderColumn> columnMap = Stream.of(MovieOrderColumn.values()).
+            collect(Collectors.toMap(moc -> moc.getMovieOrderColumn(), moc -> moc));
     private final String movieOrderColumn;
-    static Map<String, MovieOrderColumn> columnMap = new HashMap<>();
-
-    static {
-        for(MovieOrderColumn moc : MovieOrderColumn.values())
-            columnMap.put(moc.getMovieOrderColumn(), moc);
-    }
 
     public String getMovieOrderColumn() { return movieOrderColumn; }
 
@@ -25,10 +21,5 @@ public enum MovieOrderColumn  {
         if (movieOrderColumn == null)
             throw new NoSuchFieldError("no such value: " + column.trim().toLowerCase());
         return movieOrderColumn;
-    }
-
-    public static void main(String[] args) {
-        MovieOrderColumn movieOrderColumn = MovieOrderColumn.PRICE;
-        System.out.println(movieOrderColumn.getMovieOrderColumn());
     }
 }

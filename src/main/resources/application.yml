@@ -15,13 +15,6 @@ cache:
       initialDelay : 14400000
       fixedDelay : 14400000
 
-logging:
-  level:
-    root : TRACE
-    org:
-      springframework:
-        web : TRACE
-
 myScheduler:
   pool-size : 2
 

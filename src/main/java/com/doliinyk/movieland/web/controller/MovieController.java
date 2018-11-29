@@ -7,7 +7,6 @@ import com.doliinyk.movieland.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,17 +23,11 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-//    @RequestMapping(path = "/v1/movie", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    public List<Movie> getAll() {
-//        return movieService.getAll(new MovieRequestParameter());
-//    }
-
     @RequestMapping(path = "/v1/movie", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll(
             @RequestParam(name = "price", required = false) OrderType priceOrder,
             @RequestParam(name = "rating", required = false) OrderType ratingOrder
     ) {
-//        logger.info("getAll; price={}, rating={}", priceOrder.getOrderTypeName(), ratingOrder.getOrderTypeName());
         MovieRequestParameter movieRequestParameter = new MovieRequestParameter();
         movieRequestParameter.addMovieOrderParameter("price", priceOrder);
         movieRequestParameter.addMovieOrderParameter("rating", ratingOrder);
@@ -60,12 +53,6 @@ public class MovieController {
         movieRequestParameter.addMovieOrderParameter("price", priceOrder);
         movieRequestParameter.addMovieOrderParameter("rating", ratingOrder);
         return movieService.getByGenre(id, movieRequestParameter);
-    }
-
-    @ExceptionHandler({IllegalArgumentException.class,NoSuchFieldError.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    void handleBadRequests(Exception e) {
-        logger.error("Exception:{}", e);
     }
 
 }
