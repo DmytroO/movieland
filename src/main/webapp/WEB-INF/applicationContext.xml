@@ -8,23 +8,36 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-    <context:property-placeholder location="classpath:application.properties"/>
+    <bean id="yamlProperties" class="org.springframework.beans.factory.config.YamlPropertiesFactoryBean">
+        <property name="resources" value="classpath:application.yml"/>
+    </bean>
+    <context:property-placeholder properties-ref="yamlProperties"/>
+    <context:property-placeholder location="classpath:logging.properties" />
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:changeLog.xml"/>
+        <property name="shouldRun" value="true"/>
+    </bean>
 
     <context:component-scan base-package="com.doliinyk.movieland.dao"/>
     <context:component-scan base-package="com.doliinyk.movieland.service"/>
 
     <task:annotation-driven scheduler="myScheduler"/>
-    <task:scheduler id="myScheduler" pool-size="10"/>
+    <task:scheduler id="myScheduler" pool-size="${myScheduler.pool-size}"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.user}"/>
         <property name="password" value="${jdbc.password}"/>
-        <property name="initialSize" value="${jdbc.poolSize}"/>
+        <property name="initialSize" value="${dbcp2.initialSize}"/>
+        <property name="lifo" value="${dbcp2.lifo}"/>
+        <property name="maxTotal" value="${dbcp2.maxTotal}"/>
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
+
 </beans>

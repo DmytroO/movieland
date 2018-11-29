@@ -1,0 +1,22 @@
+jdbc:
+  driverClassName : org.postgresql.Driver
+  password : 2Shop
+  user : shopper
+  url : jdbc:postgresql://localhost:5433/postgres
+
+dbcp2:
+  initialSize : 3
+  lifo : false
+  maxTotal : 6
+
+cache:
+  genre:
+    refresh:
+      initialDelay : 14400000
+      fixedDelay : 14400000
+
+myScheduler:
+  pool-size : 2
+
+liquibase:
+  autorun : true

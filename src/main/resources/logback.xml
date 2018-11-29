@@ -7,7 +7,7 @@
     <appender name="Rolling-File-Appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${user.dir}/movieland.log</file>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>TRACE</level>
+            <level>DEBUG</level>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${user.dir}/movieland-%d{yyyy-MM-dd}.log.%i</fileNamePattern>

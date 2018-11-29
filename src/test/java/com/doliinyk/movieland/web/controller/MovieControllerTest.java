@@ -1,5 +1,6 @@
 package com.doliinyk.movieland.web.controller;
 
+import com.doliinyk.movieland.dao.common.MovieRequestParameter;
 import com.doliinyk.movieland.entity.Movie;
 import com.doliinyk.movieland.service.MovieService;
 import org.junit.Before;
@@ -44,9 +45,10 @@ public class MovieControllerTest {
         m.setPicturePath("some_directory/some_file.jpeg");
         m.setRating(9.00);
         m.setPrice(999.99);
+        m.setPicturePath("picture.png");
         movies.add(m);
 
-        when(movieServiceMock.getAll()).thenReturn(movies);
+        when(movieServiceMock.getAll(eq(null))).thenReturn(movies);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/movie"))
                 .andExpect(status().isOk())
@@ -151,7 +153,7 @@ public class MovieControllerTest {
         m3.setPrice(0.01);
         movies.add(m3);
 
-        when(movieServiceMock.getByGenre(eq(1))).thenReturn(movies);
+        when(movieServiceMock.getByGenre(eq(1), eq(null))).thenReturn(movies);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/movie/genre/1"))
                 .andExpect(status().isOk())

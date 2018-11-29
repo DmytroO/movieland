@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="DOliinyk" id="ddl-01_movieland_genre.sql">
+        <sqlFile dbms="postgresql" encoding="utf8" relativeToChangelogFile="true" path="db/ddl/01_movieland_genre.sql"/>
+    </changeSet>
+    <changeSet author="DOliinyk" id="ddl-02_movieland_user.sql">
+        <sqlFile dbms="postgresql" encoding="utf8" relativeToChangelogFile="true" path="db/ddl/02_movieland_user.sql"/>
+    </changeSet>
+    <changeSet author="DOliinyk" id="ddl-03_movieland_movie.sql">
+        <sqlFile dbms="postgresql" encoding="utf8" relativeToChangelogFile="true" path="db/ddl/03_movieland_movie.sql"/>
+    </changeSet>
+    <changeSet author="DOliinyk" id="ddl-04_movieland_movie_genre.sql">
+        <sqlFile dbms="postgresql" encoding="utf8" relativeToChangelogFile="true" path="db/ddl/04_movieland_movie_genre.sql"/>
+    </changeSet>
+    <changeSet author="DOliinyk" id="ddl-05_movieland_poster.sql">
+        <sqlFile dbms="postgresql" encoding="utf8" relativeToChangelogFile="true" path="db/ddl/05_movieland_poster.sql"/>
+    </changeSet>
+    <changeSet author="DOliinyk" id="ddl-06_movieland_review.sql">
+        <sqlFile dbms="postgresql" encoding="utf8" relativeToChangelogFile="true" path="db/ddl/06_movieland_review.sql"/>
+    </changeSet>
+
+    <changeSet author="DOliinyk" id="data" runOnChange="true" dbms="postgresql">
+        <sqlFile encoding="utf8" path="db/dml/00_delete_all.sql"/>
+        <sqlFile encoding="utf8" path="db/dml/01_movieland_genre.sql"/>
+        <sqlFile encoding="utf8" path="db/dml/02_movieland_user.sql"/>
+        <sqlFile encoding="utf8" path="db/dml/03_movieland_movie.sql"/>
+        <sqlFile encoding="utf8" path="db/dml/04_movieland_movie_genre.sql"/>
+        <sqlFile encoding="utf8" path="db/dml/05_movieland_poster.sql"/>
+        <sqlFile encoding="utf8" path="db/dml/06_movieland_review.sql"/>
+    </changeSet>
+
+</databaseChangeLog>

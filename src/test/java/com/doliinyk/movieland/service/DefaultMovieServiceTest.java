@@ -1,6 +1,7 @@
 package com.doliinyk.movieland.service;
 
 import com.doliinyk.movieland.dao.MovieDao;
+import com.doliinyk.movieland.dao.common.MovieRequestParameter;
 import com.doliinyk.movieland.entity.Movie;
 import org.junit.Test;
 
@@ -39,10 +40,10 @@ public class DefaultMovieServiceTest {
         m2.setPrice(99.00);
         expectedMovies.add(m2);
 
-        when(movieDao.getAll()).thenReturn(new ArrayList<>(expectedMovies));
+        when(movieDao.getAll(eq(null))).thenReturn(new ArrayList<>(expectedMovies));
 
         DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao);
-        List<Movie> actualMovies = defaultMovieService.getAll();
+        List<Movie> actualMovies = defaultMovieService.getAll(null);
 
         assertEquals(2 ,actualMovies.size());
         for (int i = 0; i < expectedMovies.size(); i++) {
@@ -133,10 +134,10 @@ public class DefaultMovieServiceTest {
         m3.setPrice(0.01);
         expectedMovies.add(m3);
 
-        when(movieDao.getByGenre(eq(1))).thenReturn(new ArrayList<>(expectedMovies));
+        when(movieDao.getByGenre(eq(1), eq(null))).thenReturn(new ArrayList<>(expectedMovies));
 
         DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao);
-        List<Movie> actualMovies = defaultMovieService.getByGenre(1);
+        List<Movie> actualMovies = defaultMovieService.getByGenre(1, null);
 
         assertEquals(3 ,actualMovies.size());
         for (int i = 0; i < expectedMovies.size(); i++) {
