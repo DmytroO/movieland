@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(locations = {
         "file:src/main/webapp/WEB-INF/applicationContext.xml",
         "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml",
-        "file:src/test/resources/testContext.xml"
+        "classpath:testContext.xml"
 })
 @WebAppConfiguration
 public class MovieControllerITest {
