@@ -1,6 +1,7 @@
 package com.doliinyk.movieland.service;
 
 import com.doliinyk.movieland.dao.MovieDao;
+import com.doliinyk.movieland.dao.common.MovieRequestParameter;
 import com.doliinyk.movieland.entity.Movie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,8 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getAll() {
-        List<Movie> movies = movieDao.getAll();
+    public List<Movie> getAll(MovieRequestParameter movieRequestParameter) {
+        List<Movie> movies = movieDao.getAll(movieRequestParameter);
         logger.trace("movies {}", movies);
         logger.info("movies.size {}", movies.size());
         return movies;
@@ -35,8 +36,8 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getByGenre(int id) {
-        List<Movie> movies = movieDao.getByGenre(id);
+    public List<Movie> getByGenre(int id, MovieRequestParameter movieRequestParameter) {
+        List<Movie> movies = movieDao.getByGenre(id, movieRequestParameter);
         logger.trace("genre: {}, movies: {}", id, movies);
         logger.info("genre: {}, movies.size: {}", id, movies.size());
         return movies;

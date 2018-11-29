@@ -1,5 +1,6 @@
 package com.doliinyk.movieland.dao.jdbc;
 
+import com.doliinyk.movieland.dao.common.MovieRequestParameter;
 import com.doliinyk.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.doliinyk.movieland.entity.Movie;
 import org.junit.Test;
@@ -44,7 +45,7 @@ public class JdbcMovieDaoTest {
         when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(new ArrayList<>(expectedMovies));
 
         JdbcMovieDao jdbcMovieDao = new JdbcMovieDao(jdbcTemplate);
-        List<Movie> actualMovies = jdbcMovieDao.getAll();
+        List<Movie> actualMovies = jdbcMovieDao.getAll(new MovieRequestParameter());
 
         assertEquals(2 ,actualMovies.size());
         for (int i = 0; i < expectedMovies.size(); i++) {
@@ -138,7 +139,7 @@ public class JdbcMovieDaoTest {
         when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class), eq(1))).thenReturn(new ArrayList<>(expectedMovies));
 
         JdbcMovieDao jdbcMovieDao = new JdbcMovieDao(jdbcTemplate);
-        List<Movie> actualMovies = jdbcMovieDao.getByGenre(1);
+        List<Movie> actualMovies = jdbcMovieDao.getByGenre(1, new MovieRequestParameter());
 
         assertEquals(3 ,actualMovies.size());
         for (int i = 0; i < expectedMovies.size(); i++) {
