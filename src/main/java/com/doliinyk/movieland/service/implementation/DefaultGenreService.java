@@ -1,7 +1,8 @@
-package com.doliinyk.movieland.service;
+package com.doliinyk.movieland.service.implementation;
 
 import com.doliinyk.movieland.dao.GenreDao;
 import com.doliinyk.movieland.entity.Genre;
+import com.doliinyk.movieland.service.GenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class DefaultGenreService implements GenreService {
         logger.trace("genres: {}", genres);
         logger.info("genres.size: {}", genres.size());
         return genres;
+    }
+
+    @Override
+    public List<Genre> getGenreByMovieId(int movieId) {
+        return genreDao.getByMovieId(movieId);
     }
 }

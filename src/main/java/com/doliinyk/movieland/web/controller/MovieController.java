@@ -55,4 +55,9 @@ public class MovieController {
         return movieService.getByGenre(id, movieRequestParameter);
     }
 
+    @RequestMapping(path = "/v1/movie/{movieId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @SuppressWarnings("unused")
+    public Movie getMovieById(@PathVariable("movieId") int id) {
+        return movieService.getById(id, new MovieRequestParameter());
+    }
 }

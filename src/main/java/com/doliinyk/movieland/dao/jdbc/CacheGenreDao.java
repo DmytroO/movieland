@@ -37,6 +37,11 @@ public class CacheGenreDao implements GenreDao {
         return new ArrayList<>(genreCache);
     }
 
+    @Override
+    public List<Genre> getByMovieId(int movieId) {
+        return genreDao.getByMovieId(movieId);
+    }
+
     public CacheGenreDao(GenreDao genreDao) { this.genreDao = genreDao; }
 
 }
