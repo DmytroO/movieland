@@ -2,7 +2,7 @@ package com.doliinyk.movieland.service;
 
 import com.doliinyk.movieland.dao.MovieDao;
 import com.doliinyk.movieland.entity.Movie;
-import com.doliinyk.movieland.service.enrich.EnrichMovie;
+import com.doliinyk.movieland.service.implementation.DefaultEnrichMovieService;
 import com.doliinyk.movieland.service.implementation.DefaultMovieService;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class DefaultMovieServiceTest {
     @Test
     public void getAll() {
         MovieDao movieDao = mock(MovieDao.class);
-        EnrichMovie enrichMovie = mock(EnrichMovie.class);
+        DefaultEnrichMovieService defaultEnrichMovieService = mock(DefaultEnrichMovieService.class);
         List<Movie> expectedMovies = new ArrayList<>();
 
         Movie m1 = new Movie();
@@ -44,7 +44,7 @@ public class DefaultMovieServiceTest {
 
         when(movieDao.getAll(eq(null))).thenReturn(new ArrayList<>(expectedMovies));
 
-        DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao, enrichMovie);
+        DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao, defaultEnrichMovieService);
         List<Movie> actualMovies = defaultMovieService.getAll(null);
 
         assertEquals(2 ,actualMovies.size());
@@ -57,7 +57,7 @@ public class DefaultMovieServiceTest {
     @Test
     public void getThreeRandom() {
         MovieDao movieDao = mock(MovieDao.class);
-        EnrichMovie enrichMovie = mock(EnrichMovie.class);
+        DefaultEnrichMovieService defaultEnrichMovieService = mock(DefaultEnrichMovieService.class);
         List<Movie> expectedMovies = new ArrayList<>();
 
         Movie m1 = new Movie();
@@ -92,7 +92,7 @@ public class DefaultMovieServiceTest {
 
         when(movieDao.getThreeRandom()).thenReturn(new ArrayList<>(expectedMovies));
 
-        DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao, enrichMovie);
+        DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao, defaultEnrichMovieService);
         List<Movie> actualMovies = defaultMovieService.getThreeRandom();
 
         assertEquals(3 ,actualMovies.size());
@@ -105,7 +105,7 @@ public class DefaultMovieServiceTest {
     @Test
     public void getByGenre() {
         MovieDao movieDao = mock(MovieDao.class);
-        EnrichMovie enrichMovie = mock(EnrichMovie.class);
+        DefaultEnrichMovieService defaultEnrichMovieService = mock(DefaultEnrichMovieService.class);
         List<Movie> expectedMovies = new ArrayList<>();
 
         Movie m1 = new Movie();
@@ -140,7 +140,7 @@ public class DefaultMovieServiceTest {
 
         when(movieDao.getByGenre(eq(1), eq(null))).thenReturn(new ArrayList<>(expectedMovies));
 
-        DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao, enrichMovie);
+        DefaultMovieService defaultMovieService = new DefaultMovieService(movieDao, defaultEnrichMovieService);
         List<Movie> actualMovies = defaultMovieService.getByGenre(1, null);
 
         assertEquals(3 ,actualMovies.size());

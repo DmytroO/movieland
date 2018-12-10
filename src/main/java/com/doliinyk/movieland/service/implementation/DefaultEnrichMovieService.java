@@ -1,4 +1,4 @@
-package com.doliinyk.movieland.service.enrich;
+package com.doliinyk.movieland.service.implementation;
 
 import com.doliinyk.movieland.entity.Movie;
 import com.doliinyk.movieland.service.CountryService;
@@ -7,12 +7,12 @@ import com.doliinyk.movieland.service.ReviewService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EnrichMovie {
+public class DefaultEnrichMovieService {
     private GenreService genreService;
     private ReviewService reviewService;
     private CountryService countryService;
 
-    public EnrichMovie(GenreService genreService, ReviewService reviewService, CountryService countryService) {
+    public DefaultEnrichMovieService(GenreService genreService, ReviewService reviewService, CountryService countryService) {
         this.genreService = genreService;
         this.reviewService = reviewService;
         this.countryService = countryService;
