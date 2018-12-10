@@ -2,6 +2,7 @@ package com.doliinyk.movieland.service;
 
 import com.doliinyk.movieland.dao.GenreDao;
 import com.doliinyk.movieland.entity.Genre;
+import com.doliinyk.movieland.service.implementation.DefaultGenreService;
 import org.junit.Test;
 
 import java.util.ArrayList;

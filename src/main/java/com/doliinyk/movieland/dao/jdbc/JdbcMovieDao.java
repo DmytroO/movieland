@@ -8,6 +8,7 @@ import com.doliinyk.movieland.entity.Movie;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -15,11 +16,12 @@ public class JdbcMovieDao implements MovieDao {
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
     private JdbcTemplate jdbcTemplate;
     private static final String GET_ALL_MOVIE = "select m.id ,m.name_russian as nameRussian ,m.name_native as nameNative" +
-            " ,m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath" +
+            " ,m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath, null as description" +
             " from       movieland_movie  m " +
             " inner join movieland_poster p on p.movie_id = m.id"
             ;
-    private static final String GET_3_RANDOM_MOVIES = "select id ,nameRussian ,nameNative ,yearOfRelease ,rating ,price ,picturePath\n" +
+    private static final String GET_3_RANDOM_MOVIES = "select id ,nameRussian ,nameNative ,yearOfRelease ,rating " +
+            ",price ,picturePath, null as description\n" +
             "from      (\n" +
             "select m.id ,m.name_russian as nameRussian ,m.name_native as nameNative\n" +
             ",m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath\n" +
@@ -30,11 +32,17 @@ public class JdbcMovieDao implements MovieDao {
             "order by random()\n" +
             "limit 3";
     private static final String GET_MOVIE_4_GENRE = "select m.id ,m.name_russian as nameRussian ,m.name_native as nameNative" +
-            " ,m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath" +
+            " ,m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath, null as description" +
             " from       movieland_movie       m " +
             " inner join movieland_poster      p  on p.movie_id = m.id" +
             " inner join movieland_movie_genre mg on mg.movie_id = m.id" +
             " where  mg.genre_id = ?"
+            ;
+    private static final String GET_MOVIE_BY_ID = "select m.id ,m.name_russian as nameRussian ,m.name_native as nameNative" +
+            " ,m.year_of_release as yearOfRelease ,m.rating ,m.price ,p.poster_url as picturePath, m.description" +
+            " from       movieland_movie       m " +
+            " inner join movieland_poster      p  on p.movie_id = m.id" +
+            " where  m.id = ?"
             ;
 
     public JdbcMovieDao(JdbcTemplate jdbcTemplate) {
@@ -54,5 +62,10 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> getByGenre(int id, MovieRequestParameter movieRequestParameter) {
         String fullMovieSql = MovieQueryBuilder.movieQueryBuilder(GET_MOVIE_4_GENRE, movieRequestParameter);
         return jdbcTemplate.query(fullMovieSql, MOVIE_ROW_MAPPER ,id);
+    }
+
+    @Override
+    public Movie getById(int id, MovieRequestParameter movieRequestParameter) {
+        return jdbcTemplate.queryForObject(GET_MOVIE_BY_ID, MOVIE_ROW_MAPPER ,id);
     }
 }

@@ -1,4 +1,4 @@
-create table movieland_user (
+create table if not exists movieland_user (
  id                          serial primary key
 ,email                       varchar(200) unique not null
 ,username                    varchar(100) unique not null

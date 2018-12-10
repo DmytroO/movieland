@@ -1,5 +1,10 @@
 package com.doliinyk.movieland.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.util.List;
+import java.util.Objects;
+
 public class Movie {
     private int id;
     private String nameRussian;
@@ -8,43 +13,37 @@ public class Movie {
     private double rating;
     private double price;
     private String picturePath;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String description;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Genre> genres;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Country> countries;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Review> reviews;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Movie)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
-
-        if (getId() != movie.getId()) return false;
-        if (getYearOfRelease() != movie.getYearOfRelease()) return false;
-        if (Double.compare(movie.getRating(), getRating()) != 0) return false;
-        if (Double.compare(movie.getPrice(), getPrice()) != 0) return false;
-        if (!getNameRussian().equals(movie.getNameRussian())) return false;
-        if (!getNameNative().equals(movie.getNameNative())) return false;
-        return getPicturePath() != null ? getPicturePath().equals(movie.getPicturePath()) : movie.getPicturePath() == null;
+        return id == movie.id &&
+                yearOfRelease == movie.yearOfRelease &&
+                Double.compare(movie.rating, rating) == 0 &&
+                Double.compare(movie.price, price) == 0 &&
+                Objects.equals(nameRussian, movie.nameRussian) &&
+                Objects.equals(nameNative, movie.nameNative) &&
+                Objects.equals(picturePath, movie.picturePath);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = getId();
-        result = 31 * result + getNameRussian().hashCode();
-        result = 31 * result + getNameNative().hashCode();
-        result = 31 * result + getYearOfRelease();
-        temp = Double.doubleToLongBits(getRating());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getPicturePath() != null ? getPicturePath().hashCode() : 0);
-        return result;
+        return Objects.hash(id, nameRussian, nameNative, yearOfRelease, rating, price, picturePath);
     }
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -52,7 +51,6 @@ public class Movie {
     public String getNameRussian() {
         return nameRussian;
     }
-
     public void setNameRussian(String nameRussian) {
         this.nameRussian = nameRussian;
     }
@@ -60,7 +58,6 @@ public class Movie {
     public String getNameNative() {
         return nameNative;
     }
-
     public void setNameNative(String nameNative) {
         this.nameNative = nameNative;
     }
@@ -68,7 +65,6 @@ public class Movie {
     public int getYearOfRelease() {
         return yearOfRelease;
     }
-
     public void setYearOfRelease(int yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
     }
@@ -76,7 +72,6 @@ public class Movie {
     public double getRating() {
         return rating;
     }
-
     public void setRating(double rating) {
         this.rating = rating;
     }
@@ -84,7 +79,6 @@ public class Movie {
     public double getPrice() {
         return price;
     }
-
     public void setPrice(double price) {
         this.price = price;
     }
@@ -92,10 +86,21 @@ public class Movie {
     public String getPicturePath() {
         return picturePath;
     }
-
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public List<Genre> getGenres() { return genres; }
+    public void setGenres(List<Genre> genres) { this.genres = genres; }
+
+    public List<Country> getCountries() { return countries; }
+    public void setCountries(List<Country> countries) { this.countries = countries; }
+
+    public List<Review> getReviews() { return reviews; }
+    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
 
     @Override
     public String toString() {
