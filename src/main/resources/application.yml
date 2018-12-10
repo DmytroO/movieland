@@ -20,3 +20,6 @@ myScheduler:
 
 liquibase:
   autorun : true
+
+currency:
+  native : UAH
