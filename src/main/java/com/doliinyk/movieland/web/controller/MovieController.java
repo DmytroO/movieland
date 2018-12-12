@@ -1,5 +1,6 @@
 package com.doliinyk.movieland.web.controller;
 
+import com.doliinyk.movieland.dao.common.Currency;
 import com.doliinyk.movieland.dao.common.MovieRequestParameter;
 import com.doliinyk.movieland.dao.common.OrderType;
 import com.doliinyk.movieland.entity.Movie;
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 public class MovieController {
-    private MovieService movieService;
     private final Logger logger = LoggerFactory.getLogger(getClass());
+    private MovieService movieService;
 
     @Autowired
     @SuppressWarnings("unused")
@@ -23,7 +25,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @RequestMapping(path = "/v1/movie", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/v1/movie", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll(
             @RequestParam(name = "price", required = false) OrderType priceOrder,
             @RequestParam(name = "rating", required = false) OrderType ratingOrder
@@ -36,13 +38,16 @@ public class MovieController {
         return movies;
     }
 
-    @RequestMapping(path = "/v1/movie/random", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/v1/movie/random", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @SuppressWarnings("unused")
     public List<Movie> getThreeRandom() {
         return movieService.getThreeRandom();
     }
 
-    @RequestMapping(path = "/v1/movie/genre/{genreId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(
+            path = "/v1/movie/genre/{genreId}",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    )
     @SuppressWarnings("unused")
     public List<Movie> getMovieByGenre(
             @PathVariable("genreId") int id,
@@ -55,9 +60,14 @@ public class MovieController {
         return movieService.getByGenre(id, movieRequestParameter);
     }
 
-    @RequestMapping(path = "/v1/movie/{movieId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/v1/movie/{movieId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @SuppressWarnings("unused")
-    public Movie getMovieById(@PathVariable("movieId") int id) {
-        return movieService.getById(id, new MovieRequestParameter());
+    public Movie getMovieById(
+            @PathVariable("movieId") int id,
+            @RequestParam(name = "currency", required = false) Currency currency
+    ) {
+        MovieRequestParameter requestParameter = new MovieRequestParameter();
+        requestParameter.setCurrency(currency);
+        return movieService.getById(id, requestParameter);
     }
 }

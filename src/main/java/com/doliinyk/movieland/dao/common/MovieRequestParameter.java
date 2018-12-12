@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class MovieRequestParameter {
     private ArrayList<MovieOrderParameter> movieOrderParameter = new ArrayList<>();
+    private Currency currency;
     private static Set<String> validationSet = new HashSet<>();
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -17,6 +18,9 @@ public class MovieRequestParameter {
         validationSet.add((MovieOrderColumn.PRICE.getMovieOrderColumn() + ":" + OrderType.DESC.getOrderTypeName()));
         validationSet.add((MovieOrderColumn.RATING.getMovieOrderColumn() + ":" + OrderType.DESC.getOrderTypeName()));
     }
+
+    public Currency getCurrency() { return currency; }
+    public void setCurrency(Currency currency) { this.currency = currency; }
 
     public void addMovieOrderParameter(String name, OrderType orderType) throws IllegalArgumentException {
         if (orderType == null) return;
@@ -37,5 +41,13 @@ public class MovieRequestParameter {
 
     public MovieOrderParameter getMovieOrderParameter(int i) {
         return movieOrderParameter.get(i);
+    }
+
+    @Override
+    public String toString() {
+        return "MovieRequestParameter{" +
+                "movieOrderParameter=" + movieOrderParameter +
+                ", currency=" + currency +
+                '}';
     }
 }

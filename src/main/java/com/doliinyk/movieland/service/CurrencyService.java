@@ -1,7 +1,8 @@
 package com.doliinyk.movieland.service;
 
-import com.doliinyk.movieland.entity.Currency;
+import com.doliinyk.movieland.dao.common.Currency;
 
 public interface CurrencyService {
-    public double convertToCurrency(double sum, Currency toCurrency);
+    double convertToCurrency(double sum, Currency toCurrency);
+
 }

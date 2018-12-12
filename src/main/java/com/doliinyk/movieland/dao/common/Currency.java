@@ -1,4 +1,4 @@
-package com.doliinyk.movieland.entity;
+package com.doliinyk.movieland.dao.common;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,5 +21,10 @@ public enum Currency {
         if (currency == null)
             throw new NoSuchFieldError("no such value: " + value.trim().toLowerCase());
         return currency;
+    }
+
+    public static boolean isCurrencyValueValid(String value) {
+        Currency currency = currencyMap.get(value.trim().toLowerCase());
+        return currency != null;
     }
 }

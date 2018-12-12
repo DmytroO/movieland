@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@Primary
 public class JdbcReviewDao implements ReviewDao {
     private static final ReviewRowMapper REVIEW_ROW_MAPPER = new ReviewRowMapper();
     private JdbcTemplate jdbcTemplate;

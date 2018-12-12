@@ -3,6 +3,8 @@ package com.doliinyk.movieland.service.implementation;
 import com.doliinyk.movieland.dao.MovieDao;
 import com.doliinyk.movieland.dao.common.MovieRequestParameter;
 import com.doliinyk.movieland.entity.Movie;
+import com.doliinyk.movieland.service.CurrencyService;
+import com.doliinyk.movieland.service.EnrichMovieService;
 import com.doliinyk.movieland.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +16,17 @@ import java.util.List;
 public class DefaultMovieService implements MovieService {
     private MovieDao movieDao;
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private DefaultEnrichMovieService defaultEnrichMovieService;
+    private EnrichMovieService enrichMovieService;
+    private CurrencyService currencyService;
 
-    public DefaultMovieService(MovieDao movieDao, DefaultEnrichMovieService defaultEnrichMovieService) {
+    public DefaultMovieService(
+            MovieDao movieDao,
+            EnrichMovieService enrichMovieService,
+            CurrencyService currencyService
+    ) {
         this.movieDao = movieDao;
-        this.defaultEnrichMovieService = defaultEnrichMovieService;
+        this.enrichMovieService = enrichMovieService;
+        this.currencyService = currencyService;
     }
 
     @Override
@@ -48,8 +56,10 @@ public class DefaultMovieService implements MovieService {
     @Override
     public Movie getById(int id, MovieRequestParameter movieRequestParameter) {
         Movie movie = movieDao.getById(id, movieRequestParameter);
-        defaultEnrichMovieService.enrich(movie);
-        logger.trace("movie: {}", movie);
+        enrichMovieService.enrich(movie);
+        if (movieRequestParameter.getCurrency() != null)
+            movie.setPrice(currencyService.convertToCurrency(movie.getPrice() ,movieRequestParameter.getCurrency()));
+        logger.info("movie: {}, currency: {}, price: {}", movie, movieRequestParameter.getCurrency());
         return movie;
     }
 
