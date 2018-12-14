@@ -33,8 +33,10 @@ public class LoginLogoutController {
             @RequestBody String requestJson,
             HttpServletResponse response
     ) {
+        log.info("requestJson {}", requestJson);
         SecurityToken securityToken = securityTokenService.getSecurityToken(requestJson);
         if (securityToken == null) {
+            log.info("set BAD_REQUEST");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         return null;
@@ -45,6 +47,7 @@ public class LoginLogoutController {
             @RequestHeader("uuid") String uuid,
             HttpServletResponse response
     ) throws IOException {
+        log.info("logout {}", uuid);
         securityTokenService.deleteSecurityToken(UUID.fromString(uuid));
         Cookie uuidCookie = new Cookie("UUID", "");
         uuidCookie.setMaxAge(0);
