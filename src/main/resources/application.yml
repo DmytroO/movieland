@@ -26,3 +26,8 @@ currency:
   nativeCurrency : UAH
   cron : 01 0 16,18 ? * MON-FRI
   url : https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json
+
+securityToken:
+  cleanCron : 01 0 * ? * *
+  # 60 * 60 * 2 = 3600 * 2 = 7200
+  expirationPeriodSeconds : 7200
