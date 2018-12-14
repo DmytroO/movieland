@@ -12,6 +12,7 @@ dbcp2:
 cache:
   genre:
     refresh:
+      # 1000 (ms) * 60 (sec) * 60 (min) * 4 (hours) = 14400000
       initialDelay : 14400000
       fixedDelay : 14400000
 
@@ -20,3 +21,8 @@ myScheduler:
 
 liquibase:
   autorun : true
+
+currency:
+  nativeCurrency : UAH
+  cron : 01 0 16,18 ? * MON-FRI
+  url : https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json

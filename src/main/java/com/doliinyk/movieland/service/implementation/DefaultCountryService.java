@@ -17,8 +17,9 @@ public class DefaultCountryService implements CountryService {
     public DefaultCountryService(CountryDao countryDao) { this.countryDao = countryDao; }
 
     @Override
-    public List<Country> getCountryByMovie(int movie_id) {
-        List<Country> countries = countryDao.getCountryByMovie(movie_id);
+    public List<Country> getCountryByMovie(int movieId) {
+        List<Country> countries = countryDao.getCountryByMovie(movieId);
+        log.trace("getCountryByMovie; countries: {}", countries);
         log.info("countries.size {}", countries.size());
         return countries;
     }
